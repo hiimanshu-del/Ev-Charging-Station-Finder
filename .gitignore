@@ -1,0 +1,23 @@
+# Python virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Secret keys and certificates
+*.key
+*.pem
+*.crt
+
+# Installer
+Git-2.56.0-64-bit.exe
+
+# Environment secrets
+.env
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db

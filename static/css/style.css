@@ -1,0 +1,1483 @@
+/* ============================================================
+   EV CHARGING STATION FINDER
+   Modern Responsive CSS
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4fff8 0%,
+            #eef7ff 50%,
+            #f8faff 100%
+        );
+
+    color: #172033;
+
+    line-height: 1.6;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+.container {
+    width: min(1180px, 94%);
+    margin: 0 auto;
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071f16,
+            #0b5d3b 55%,
+            #0e7a4f
+        );
+
+    color: white;
+
+    padding: 42px 0 46px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    right: -100px;
+    top: -140px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.brand-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.brand-logo {
+    width: 68px;
+    height: 68px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.25);
+
+    font-size: 2.4rem;
+
+    flex-shrink: 0;
+}
+
+.brand-text h1 {
+    font-size:
+        clamp(1.7rem, 4vw, 2.7rem);
+
+    line-height: 1.15;
+
+    font-weight: 800;
+}
+
+.brand-text p {
+    margin-top: 8px;
+
+    color:
+        rgba(255, 255, 255, 0.82);
+}
+
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+
+main.container {
+    padding-top: 25px;
+    padding-bottom: 35px;
+}
+
+
+/* ============================================================
+   LOCATION STATUS
+   ============================================================ */
+
+.location-status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 15px 17px;
+
+    margin-bottom: 20px;
+
+    border-radius: 15px;
+
+    background: white;
+
+    border:
+        1px solid #dce9e2;
+
+    box-shadow:
+        0 7px 25px rgba(20, 76, 51, 0.06);
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.location-status-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #eaf7f0;
+
+    font-size: 1.25rem;
+
+    flex-shrink: 0;
+}
+
+.location-status strong {
+    display: block;
+
+    color: #172033;
+
+    font-size: 0.92rem;
+}
+
+.location-status p {
+    color: #667085;
+
+    font-size: 0.8rem;
+
+    margin-top: 2px;
+}
+
+.location-status button {
+    margin-left: auto;
+
+    border: none;
+
+    background: #0b6f46;
+
+    color: white;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    font-size: 0.82rem;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.location-status button:hover {
+    background: #095b3a;
+}
+
+.location-success {
+    border-color: #a7dfc0;
+}
+
+.location-success .location-status-icon {
+    background: #dcfce7;
+}
+
+.location-warning {
+    border-color: #f1d38b;
+}
+
+.location-warning .location-status-icon {
+    background: #fff7dc;
+}
+
+.location-error {
+    border-color: #f1b5b5;
+}
+
+.location-error .location-status-icon {
+    background: #fee2e2;
+}
+
+.location-loading .location-status-icon {
+    animation:
+        locationPulse 1.2s infinite;
+}
+
+@keyframes locationPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+
+.dashboard {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+
+    margin-bottom: 22px;
+}
+
+.summary-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 20px;
+
+    background: white;
+
+    border:
+        1px solid #e4eee9;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(24, 61, 45, 0.07);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 14px 30px rgba(24, 61, 45, 0.12);
+}
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #e9f8f0;
+
+    font-size: 1.4rem;
+}
+
+.summary-label {
+    display: block;
+
+    font-size: 0.75rem;
+
+    color: #718096;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+.summary-card strong {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 1.3rem;
+
+    color: #0b5d3b;
+}
+
+
+/* ============================================================
+   SECTION
+   ============================================================ */
+
+.section-card {
+    background: white;
+
+    border:
+        1px solid #e5ece8;
+
+    border-radius: 20px;
+
+    padding: 24px;
+
+    margin-bottom: 22px;
+
+    box-shadow:
+        0 8px 30px rgba(23, 48, 38, 0.06);
+}
+
+.section-header {
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+    color: #172033;
+
+    font-size: 1.35rem;
+
+    font-weight: 800;
+}
+
+.section-header p {
+    margin-top: 4px;
+
+    color: #718096;
+
+    font-size: 0.9rem;
+}
+
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+
+.search-box {
+    display: grid;
+
+    grid-template-columns:
+        1fr auto auto;
+
+    gap: 10px;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border:
+        1px solid #d9e5df;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    font-size: 0.95rem;
+
+    background: #fbfefd;
+}
+
+.search-box input:focus {
+    border-color: #0b8f5a;
+
+    box-shadow:
+        0 0 0 4px rgba(11, 143, 90, 0.10);
+}
+
+.search-box button {
+    border: none;
+
+    padding: 0 18px;
+
+    border-radius: 12px;
+
+    background: #0b6f46;
+
+    color: white;
+
+    font-weight: 700;
+}
+
+.search-box button:hover {
+    background: #095b3a;
+}
+
+.search-box button:last-child {
+    background: #1769aa;
+}
+
+.search-box button:last-child:hover {
+    background: #12588f;
+}
+
+
+/* ============================================================
+   MAP
+   ============================================================ */
+
+#map {
+    width: 100%;
+
+    height: 470px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    border:
+        1px solid #dce7e2;
+}
+
+.map-popup {
+    min-width: 190px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.map-popup strong {
+    display: block;
+
+    color: #0b5d3b;
+
+    margin-bottom: 5px;
+}
+
+
+/* ============================================================
+   FILTERS
+   ============================================================ */
+
+.filters {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+}
+
+.filters select {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border:
+        1px solid #d9e5df;
+
+    border-radius: 11px;
+
+    background: #fbfefd;
+
+    color: #273444;
+
+    outline: none;
+}
+
+
+/* ============================================================
+   RESULT
+   ============================================================ */
+
+.result-info {
+    margin-bottom: 15px;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    background: #f2faf6;
+
+    color: #17633f;
+
+    font-size: 0.86rem;
+
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   STATION LIST
+   ============================================================ */
+
+#stationList {
+    display: grid;
+
+    gap: 16px;
+}
+
+
+/* ============================================================
+   STATION CARD
+   ============================================================ */
+
+.station-card {
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #fafffc
+        );
+
+    border:
+        1px solid #dce9e2;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.station-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 4px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0b8f5a,
+            #54b989
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 0.2s ease;
+}
+
+.station-card:hover {
+    transform:
+        translateY(-3px);
+
+    border-color:
+        #9bd5b9;
+
+    box-shadow:
+        0 14px 35px rgba(20, 76, 51, 0.11);
+}
+
+.station-card:hover::before,
+.station-card.selected::before {
+    opacity: 1;
+}
+
+.station-card.selected {
+    border-color:
+        #0b9a60;
+
+    box-shadow:
+        0 0 0 3px rgba(11, 154, 96, 0.10),
+        0 14px 35px rgba(20, 76, 51, 0.12);
+}
+
+
+/* ============================================================
+   CARD HEADER
+   ============================================================ */
+
+.station-card-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-bottom: 13px;
+}
+
+.station-title-area {
+    min-width: 0;
+}
+
+.station-title-area h3 {
+    color: #162235;
+
+    font-size: 1.08rem;
+
+    line-height: 1.45;
+
+    font-weight: 800;
+}
+
+.station-location {
+    margin-top: 5px;
+
+    color: #667085;
+
+    font-size: 0.87rem;
+}
+
+.station-arrow {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eaf8f1;
+
+    color: #0b7d4d;
+
+    font-size: 1.7rem;
+
+    flex-shrink: 0;
+}
+
+.station-card:hover .station-arrow {
+    transform:
+        translateX(3px);
+
+    background:
+        #d8f2e5;
+}
+
+
+/* ============================================================
+   ADDRESS
+   ============================================================ */
+
+.station-address {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    padding: 13px 14px;
+
+    margin-bottom: 15px;
+
+    border-radius: 12px;
+
+    background: #f7faf9;
+
+    border:
+        1px solid #edf2ef;
+
+    color: #475467;
+
+    font-size: 0.89rem;
+}
+
+.station-address strong {
+    color: #26384a;
+
+    font-size: 0.82rem;
+}
+
+
+/* ============================================================
+   DETAILS
+   ============================================================ */
+
+.station-details-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+.detail-box {
+    min-width: 0;
+
+    padding: 12px 13px;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    border:
+        1px solid #e6eee9;
+}
+
+.detail-label {
+    display: block;
+
+    color: #7b8794;
+
+    font-size: 0.72rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.3px;
+
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    display: block;
+
+    color: #263445;
+
+    font-size: 0.9rem;
+
+    font-weight: 700;
+
+    word-break: break-word;
+}
+
+
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
+
+.status-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 4px 9px;
+
+    border-radius: 999px;
+
+    font-size: 0.75rem;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.status-online,
+.availability-available {
+    background: #dcfce7;
+
+    color: #15803d;
+}
+
+.status-offline,
+.availability-unavailable {
+    background: #fee2e2;
+
+    color: #b91c1c;
+}
+
+.status-unknown,
+.availability-unknown {
+    background: #f1f5f9;
+
+    color: #64748b;
+}
+
+
+/* ============================================================
+   ROAD DISTANCE
+   ============================================================ */
+
+.road-distance {
+    min-height: 38px;
+
+    margin-top: 5px;
+
+    padding: 9px 12px;
+
+    border-radius: 10px;
+
+    background: #eef7ff;
+
+    border:
+        1px solid #dcecff;
+
+    color: #345b7d;
+
+    font-size: 0.83rem;
+
+    font-weight: 600;
+}
+
+.road-distance strong {
+    color: #1769aa;
+}
+
+
+/* ============================================================
+   SOURCE
+   ============================================================ */
+
+.station-source {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 11px;
+
+    color: #87919d;
+
+    font-size: 0.75rem;
+}
+
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+
+.station-actions {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.action-button {
+    min-height: 42px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    padding: 10px 13px;
+
+    font-size: 0.86rem;
+
+    font-weight: 800;
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.action-button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 7px 16px rgba(0, 0, 0, 0.10);
+}
+
+.map-action {
+    background: #e7f6ef;
+
+    color: #087443;
+}
+
+.direction-action {
+    background: #e9f2ff;
+
+    color: #1769aa;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.loading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 25px;
+
+    color: #0b6f46;
+
+    font-weight: 700;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+
+    border:
+        3px solid #d5eee1;
+
+    border-top-color:
+        #0b6f46;
+
+    border-radius: 50%;
+
+    animation:
+        spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+
+/* ============================================================
+   NO STATIONS
+   ============================================================ */
+
+.no-stations {
+    text-align: center;
+
+    padding: 35px 20px;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+}
+
+.no-stations-icon {
+    font-size: 2rem;
+
+    margin-bottom: 8px;
+}
+
+.no-stations h3 {
+    color: #334155;
+
+    margin-bottom: 4px;
+}
+
+
+/* ============================================================
+   LOAD MORE
+   ============================================================ */
+
+.load-more-container {
+    text-align: center;
+
+    margin-top: 20px;
+}
+
+.load-more-button {
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 11px;
+
+    background: #0b6f46;
+
+    color: white;
+
+    font-size: 0.9rem;
+
+    font-weight: 800;
+}
+
+.load-more-button:hover {
+    background: #095b3a;
+}
+
+
+/* ============================================================
+   PREDICTOR
+   ============================================================ */
+
+.predictor-form {
+    display: grid;
+
+    grid-template-columns:
+        1fr 180px auto;
+
+    gap: 12px;
+
+    align-items: end;
+}
+
+.predictor-form label {
+    display: block;
+
+    font-size: 0.82rem;
+
+    font-weight: 700;
+
+    color: #475467;
+
+    margin-bottom: 6px;
+}
+
+.predictor-form select,
+.predictor-form input {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border:
+        1px solid #d9e5df;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background: #fbfefd;
+}
+
+.predictor-form button {
+    min-height: 44px;
+
+    border: none;
+
+    padding: 0 18px;
+
+    border-radius: 11px;
+
+    background: #0b6f46;
+
+    color: white;
+
+    font-weight: 800;
+}
+
+.prediction-result {
+    margin-top: 16px;
+}
+
+.prediction-card {
+    padding: 18px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #effbf5,
+            #f1f8ff
+        );
+
+    border:
+        1px solid #d9ece2;
+}
+
+.prediction-card h3 {
+    margin-bottom: 10px;
+
+    color: #0b5d3b;
+}
+
+.prediction-card p {
+    margin-top: 5px;
+
+    color: #475467;
+}
+
+.prediction-main {
+    font-size: 1.05rem;
+
+    margin-top: 12px !important;
+}
+
+.prediction-main strong {
+    color: #0b6f46;
+}
+
+.prediction-card small {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #667085;
+}
+
+.error-card {
+    color: #b91c1c;
+
+    background: #fff5f5;
+
+    border-color: #fecaca;
+}
+
+
+/* ============================================================
+   INFO
+   ============================================================ */
+
+.info-box {
+    padding: 16px;
+
+    border-radius: 13px;
+
+    background: #f7faf9;
+
+    border:
+        1px solid #e5eee9;
+}
+
+.info-box p {
+    margin-bottom: 9px;
+
+    color: #536171;
+
+    font-size: 0.87rem;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer {
+    padding: 28px 0;
+
+    background: #071f16;
+
+    color:
+        rgba(255, 255, 255, 0.75);
+
+    text-align: center;
+
+    font-size: 0.85rem;
+}
+
+footer p + p {
+    margin-top: 4px;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .dashboard {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .search-box {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .search-box input {
+        grid-column:
+            1 / -1;
+    }
+
+    .predictor-form {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .predictor-form button {
+        grid-column:
+            1 / -1;
+    }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .hero {
+        padding:
+            28px 0 32px;
+    }
+
+    .brand-row {
+        gap: 12px;
+    }
+
+    .brand-logo {
+        width: 52px;
+        height: 52px;
+
+        border-radius: 15px;
+
+        font-size: 1.8rem;
+    }
+
+    .brand-text h1 {
+        font-size: 1.45rem;
+    }
+
+    .brand-text p {
+        font-size: 0.82rem;
+    }
+
+    main.container {
+        padding-top: 16px;
+    }
+
+
+    .location-status {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .location-status button {
+        width: 100%;
+
+        margin-left: 0;
+
+        margin-top: 4px;
+    }
+
+
+    .dashboard {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .summary-card {
+        padding: 14px;
+
+        gap: 9px;
+
+        border-radius: 14px;
+    }
+
+    .summary-icon {
+        width: 38px;
+        height: 38px;
+
+        border-radius: 11px;
+
+        font-size: 1rem;
+    }
+
+    .summary-card strong {
+        font-size: 1.05rem;
+    }
+
+    .summary-label {
+        font-size: 0.62rem;
+    }
+
+
+    .section-card {
+        padding: 16px;
+
+        border-radius: 16px;
+    }
+
+    .section-header h2 {
+        font-size: 1.12rem;
+    }
+
+
+    .search-box {
+        grid-template-columns:
+            1fr;
+    }
+
+    .search-box input {
+        grid-column: auto;
+    }
+
+    .search-box button {
+        min-height: 43px;
+    }
+
+
+    #map {
+        height: 350px;
+    }
+
+
+    .filters {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .station-card {
+        padding: 16px;
+
+        border-radius: 16px;
+    }
+
+    .station-title-area h3 {
+        font-size: 1rem;
+    }
+
+    .station-location {
+        font-size: 0.81rem;
+    }
+
+
+    .station-details-grid {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 8px;
+    }
+
+    .detail-box {
+        padding: 10px;
+    }
+
+    .detail-label {
+        font-size: 0.66rem;
+    }
+
+    .detail-value {
+        font-size: 0.82rem;
+    }
+
+
+    .station-actions {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .predictor-form {
+        grid-template-columns:
+            1fr;
+    }
+
+    .predictor-form button {
+        grid-column: auto;
+
+        min-height: 44px;
+    }
+
+}
+
+
+/* ============================================================
+   VERY SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    .dashboard {
+        grid-template-columns:
+            1fr;
+    }
+
+    .station-details-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .brand-text h1 {
+        font-size: 1.25rem;
+    }
+
+}

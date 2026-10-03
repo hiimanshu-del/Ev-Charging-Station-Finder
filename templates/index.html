@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b6f46"
+    >
+
+    <title>EV Charging Station Finder</title>
+
+    <!-- Leaflet Map CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- ======================================================
+         HERO
+         ====================================================== -->
+
+    <header class="hero">
+
+        <div class="container">
+
+            <div class="hero-content">
+
+                <div class="brand-row">
+
+                    <div class="brand-logo">
+                        ⚡
+                    </div>
+
+                    <div class="brand-text">
+
+                        <h1>
+                            EV Charging Station Finder
+                        </h1>
+
+                        <p>
+                            Find nearby EV charging stations,
+                            charger details and estimated load.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ======================================================
+         MAIN
+         ====================================================== -->
+
+    <main class="container">
+
+
+        <!-- ==================================================
+             LOCATION STATUS
+             ================================================== -->
+
+        <section
+            id="locationStatus"
+            class="location-status"
+        >
+            <div class="location-status-icon">
+                📍
+            </div>
+
+            <div>
+
+                <strong id="locationStatusTitle">
+                    Detecting your location...
+                </strong>
+
+                <p id="locationStatusText">
+                    Please allow location permission to see
+                    nearby charging stations.
+                </p>
+
+            </div>
+
+            <button
+                id="locationButton"
+                type="button"
+            >
+                📍 Use My Location
+            </button>
+
+        </section>
+
+
+        <!-- ==================================================
+             DASHBOARD
+             ================================================== -->
+
+        <section class="dashboard">
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    ⚡
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Total Stations
+                    </span>
+
+                    <strong id="totalStations">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📍
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Districts
+                    </span>
+
+                    <strong id="totalDistricts">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🔌
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Total Power
+                    </span>
+
+                    <strong id="totalPower">
+                        0 kW
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🔋
+                </div>
+
+                <div>
+
+                    <span class="summary-label">
+                        Connectors
+                    </span>
+
+                    <strong id="totalConnectors">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             SEARCH
+             ================================================== -->
+
+        <section class="section-card">
+
+            <div class="section-header">
+
+                <h2>
+                    🔎 Find Charging Stations
+                </h2>
+
+                <p>
+                    Search any city, district or location.
+                </p>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="locationInput"
+                    placeholder="Enter city or district..."
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    id="searchButton"
+                >
+                    🔍 Search
+                </button>
+
+                <button
+                    type="button"
+                    id="nearbyButton"
+                >
+                    📍 Nearby
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             MAP
+             ================================================== -->
+
+        <section class="section-card">
+
+            <div class="section-header">
+
+                <h2>
+                    🗺️ Charging Station Map
+                </h2>
+
+                <p>
+                    Select a station to view its location.
+                </p>
+
+            </div>
+
+            <div id="map"></div>
+
+        </section>
+
+
+        <!-- ==================================================
+             FILTERS
+             ================================================== -->
+
+        <section class="section-card">
+
+            <div class="section-header">
+
+                <h2>
+                    ⚙️ Filters
+                </h2>
+
+            </div>
+
+
+            <div class="filters">
+
+                <select
+                    id="statusFilter"
+                >
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="online">
+                        Online
+                    </option>
+
+                    <option value="offline">
+                        Offline
+                    </option>
+
+                    <option value="unknown">
+                        Unknown
+                    </option>
+                </select>
+
+
+                <select
+                    id="availabilityFilter"
+                >
+                    <option value="all">
+                        All Availability
+                    </option>
+
+                    <option value="available">
+                        Available
+                    </option>
+
+                    <option value="unavailable">
+                        Unavailable
+                    </option>
+
+                    <option value="unknown">
+                        Unknown
+                    </option>
+                </select>
+
+
+                <select
+                    id="chargerFilter"
+                >
+                    <option value="all">
+                        All Charger Types
+                    </option>
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             STATIONS
+             ================================================== -->
+
+        <section class="section-card">
+
+            <div class="section-header">
+
+                <h2>
+                    ⚡ Charging Stations
+                </h2>
+
+                <p id="stationSectionText">
+                    Finding stations near your location...
+                </p>
+
+            </div>
+
+
+            <div
+                id="resultInfo"
+                class="result-info"
+            >
+                Loading...
+            </div>
+
+
+            <div
+                id="stationLoading"
+                class="loading"
+            >
+                <div class="spinner"></div>
+
+                <span>
+                    Loading charging stations...
+                </span>
+            </div>
+
+
+            <div id="stationList"></div>
+
+
+            <div
+                id="noStations"
+                class="no-stations"
+                style="display:none;"
+            >
+
+                <div class="no-stations-icon">
+                    🔌
+                </div>
+
+                <h3>
+                    No charging stations found
+                </h3>
+
+                <p>
+                    Try another location or remove filters.
+                </p>
+
+            </div>
+
+
+            <div
+                id="loadMoreContainer"
+                class="load-more-container"
+                style="display:none;"
+            >
+
+                <button
+                    id="loadMoreButton"
+                    type="button"
+                    class="load-more-button"
+                >
+                    ⬇️ Load More Stations
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             LOAD PREDICTOR
+             ================================================== -->
+
+        <section class="section-card">
+
+            <div class="section-header">
+
+                <h2>
+                    📊 Charging Load Predictor
+                </h2>
+
+                <p>
+                    Estimate charging load using charger rating
+                    and expected utilization.
+                </p>
+
+            </div>
+
+
+            <div class="predictor-form">
+
+                <div>
+
+                    <label for="stationSelect">
+                        Select Charging Station
+                    </label>
+
+                    <select id="stationSelect">
+
+                        <option value="">
+                            Select a station
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label for="utilizationInput">
+                        Expected Utilization (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="utilizationInput"
+                        min="0"
+                        max="100"
+                        value="60"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="predictButton"
+                >
+                    📈 Predict Load
+                </button>
+
+            </div>
+
+
+            <div id="predictionResult"></div>
+
+        </section>
+
+
+        <!-- ==================================================
+             DATA INFORMATION
+             ================================================== -->
+
+        <section class="section-card">
+
+            <div class="section-header">
+
+                <h2>
+                    ℹ️ Data Information
+                </h2>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <p>
+                    <strong>Station data:</strong>
+                    BEE public charging station data.
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    Online/offline status is shown as
+                    Unknown when a live operator/API source
+                    is not available.
+                </p>
+
+                <p>
+                    <strong>Availability:</strong>
+                    Current connector availability is not
+                    claimed without a live data source.
+                </p>
+
+                <p>
+                    <strong>Estimated Load:</strong>
+                    Calculated from charger rating and
+                    expected utilization. It is not live
+                    electrical load.
+                </p>
+
+                <p>
+                    <strong>Source:</strong>
+                    Bureau of Energy Efficiency (BEE)
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ======================================================
+         FOOTER
+         ====================================================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                ⚡ EV Charging Station Finder
+            </p>
+
+            <p>
+                Flask • SQLite • JavaScript • Leaflet
+                • OpenStreetMap
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Leaflet JS -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+    <!-- Main JavaScript -->
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}">
+    </script>
+
+</body>
+
+</html>
